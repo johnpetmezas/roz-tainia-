@@ -3,44 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Η Ροζ Ταινία Mas</title>
+    <title>Η Ροζ Ταινία Mas | High-End Scrollytelling</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Caveat:wght@700&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <!-- Hero Section -->
+    <!-- Fixed Branding -->
+    <div class="logo">
+      <div class="logo-dot"></div>
+      <span class="logo-text">Antigravity</span>
+    </div>
+
+    <!-- 1. Intro Hero (Non-Sticky) -->
     <section id="hero">
-      <h1 class="hero-title">από εδώ η ροζ ταινία μας</h1>
+      <h1 class="hero-title">Αυτή είναι η ροζ ταινία μας</h1>
     </section>
 
-    <!-- Path of the Tape -->
-    <div id="scroll-path">
-      <div class="tape-revealer">
-        <div id="the-tape"></div>
+    <!-- 2. Scrollytelling Sequence (Sticky) -->
+    <div id="scrolly-container">
+      <div class="sticky-box">
+        <!-- Floating Text Snippets -->
+        <span class="snippet left" id="snippet-1">Είσαι έτοιμος;</span>
+        <span class="snippet right" id="snippet-2">Συνέχισε...</span>
+        
+        <!-- The Core: Tape Roll -->
+        <div id="tape-core">
+          <img src="/image_89fb44.jpg" alt="Pink Tape Roll" id="roll-img" />
+          <!-- The Strip extending downwards -->
+          <div id="the-strip"></div>
+        </div>
       </div>
     </div>
 
-    <!-- Destination -->
+    <!-- 3. Climax: Destination -->
     <section id="destination">
-      <button class="click-btn" id="click-me">CLICK ME!</button>
+      <div class="content-wrapper">
+        <button class="click-btn" id="click-me">CLICK ME!</button>
+      </div>
     </section>
 
-    <!-- Final Section -->
+    <!-- 4. Final Footer Section -->
     <section id="final">
       <h2 class="final-question">Θες ακόμα να δεις τη ροζ ταινία;</h2>
       <div class="btn-group">
-        <button class="final-button yes" id="yes-btn">Yes</button>
-        <button class="final-button no" id="no-btn">No</button>
+        <button class="final-button yes" id="yes-btn">Ναι</button>
+        <button class="final-button no" id="no-btn">Όχι</button>
       </div>
-      <p id="no-response" class="hidden-text">Okay...</p>
+      <p id="no-response" class="hidden-text">Κρίμα...</p>
     </section>
 
-    <!-- Alert Modal -->
+    <!-- Full-screen Overlay for "Ναι" -->
     <div class="overlay" id="alert-overlay">
-      <div class="modal">
-        <h2>Α ρε πονηρούλη!</h2>
-        <p>Σου αρέσουν οι ροζ ταινίες, ε; 😏</p>
+      <div class="reveal-content">
+        <h2 class="naughty-text">Α ρε πονηρούλη!</h2>
         <button class="modal-btn" id="close-modal">Κλείσιμο</button>
       </div>
     </div>
