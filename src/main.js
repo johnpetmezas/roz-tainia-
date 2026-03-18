@@ -8,7 +8,6 @@ const canvas = document.getElementById('sequence-canvas')
 const context = canvas.getContext('2d')
 
 // Configuration
-const frameCount = 100
 const startFrame = 11
 const endFrame = 100
 
@@ -33,14 +32,10 @@ const preloadImages = () => {
 const render = () => {
     const img = images[sequence.frame - startFrame];
     if (img && img.complete) {
-        // Clear canvas
         context.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Handle aspect ratio (contain style)
         const ratio = Math.min(canvas.width / img.width, canvas.height / img.height);
         const centerShift_x = (canvas.width - img.width * ratio) / 2;
         const centerShift_y = (canvas.height - img.height * ratio) / 2;
-        
         context.drawImage(img, 
             0, 0, img.width, img.height, 
             centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
@@ -55,69 +50,77 @@ const resizeCanvas = () => {
 }
 
 window.addEventListener('resize', resizeCanvas);
-resizeCanvas(); // Initial call
+resizeCanvas(); 
 
 // Load and start
 preloadImages();
 
-// GSAP ScrollTrigger
+// GSAP ScrollTrigger Sequence
 gsap.to(sequence, {
   frame: endFrame,
-  snap: 'frame', // Snap to integer frame
+  snap: 'frame',
   ease: 'none',
   scrollTrigger: {
     trigger: '#scrolly-container',
     start: 'top top',
     end: 'bottom bottom',
-    scrub: 0.5, // Smooth scrubbing
-    onUpdate: render // Render on varje scroll update
+    scrub: 1.5, // Even smoother scrub
+    onUpdate: render 
   }
 })
 
-// Text Snippets Animations
-gsap.to('#snippet-1', {
+// Bubble Text Animation ("PINK")
+gsap.to('.bubble-text', {
   opacity: 1,
-  y: -50,
+  scale: 1,
   scrollTrigger: {
     trigger: '#scrolly-container',
-    start: '10% top',
-    end: '30% top',
+    start: 'top 50%',
+    end: 'top 30%',
     scrub: true
   }
 })
 
-gsap.to('#snippet-1', {
-    opacity: 0,
-    scrollTrigger: {
-      trigger: '#scrolly-container',
-      start: '31% top',
-      end: '40% top',
-      scrub: true
-    }
+// Hero Watermark Animation
+gsap.to('.bg-watermark', {
+  y: -100,
+  opacity: 0.2,
+  scrollTrigger: {
+    trigger: '#hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: true
+  }
 })
 
-gsap.to('#snippet-2', {
-    opacity: 1,
-    y: -50,
-    scrollTrigger: {
-      trigger: '#scrolly-container',
-      start: '60% top',
-      end: '80% top',
-      scrub: true
-    }
-})
+// Snippet Logic
+const animateSnippet = (id, start, end) => {
+    gsap.to(id, {
+        opacity: 1,
+        y: -30,
+        scrollTrigger: {
+            trigger: '#scrolly-container',
+            start: `${start}% top`,
+            end: `${start + 10}% top`,
+            scrub: true
+        }
+    });
+    gsap.to(id, {
+        opacity: 0,
+        scrollTrigger: {
+            trigger: '#scrolly-container',
+            start: `${end}% top`,
+            end: `${end + 5}% top`,
+            scrub: true
+        }
+    });
+}
 
-gsap.to('#snippet-2', {
-    opacity: 0,
-    scrollTrigger: {
-      trigger: '#scrolly-container',
-      start: '81% top',
-      end: '90% top',
-      scrub: true
-    }
-})
+animateSnippet('#snippet-1', 10, 25);
+animateSnippet('#snippet-2', 40, 55);
+animateSnippet('#snippet-3', 70, 85);
 
-// Smooth scroll to final section
+// Interactions
 const clickMeBtn = document.getElementById('click-me');
 const finalSection = document.getElementById('final');
 
@@ -125,7 +128,6 @@ clickMeBtn?.addEventListener('click', () => {
     finalSection?.scrollIntoView({ behavior: 'smooth' });
 });
 
-// Final interactions
 const yesBtn = document.getElementById('yes-btn');
 const noBtn = document.getElementById('no-btn');
 const noResponse = document.getElementById('no-response');
@@ -138,8 +140,8 @@ yesBtn?.addEventListener('click', () => {
 
 noBtn?.addEventListener('click', () => {
     if (noResponse) {
+        noResponse.innerText = 'Κρίμα... Ίσως την επόμενη φορά.';
         noResponse.style.opacity = '1';
-        noResponse.innerText = 'Κρίμα...';
         setTimeout(() => { noResponse.style.opacity = '0'; }, 3000);
     }
 });
@@ -148,18 +150,4 @@ closeModal?.addEventListener('click', () => {
   alertOverlay?.classList.remove('active');
 });
 
-alertOverlay?.addEventListener('click', (e) => {
-    if (e.target === alertOverlay) alertOverlay.classList.remove('active');
-});
-
-// Intro Hero Animation
-gsap.from('.hero-title', {
-  y: 60,
-  opacity: 0,
-  duration: 1.5,
-  ease: 'power4.out',
-  delay: 0.5
-})
-
-// Ensure initial frame is drawn
 images[0].onload = render;
