@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Η Ροζ Ταινία Mas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Logo -->
+    <div class="logo">
+      <div class="logo-dot"></div>
+      <span class="logo-text">Antigravity</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero">
+      <h1 class="hero-title">από εδώ η ροζ ταινία μας</h1>
+    </section>
+
+    <!-- Path of the Tape -->
+    <div id="scroll-path">
+      <div class="tape-revealer">
+        <div id="the-tape"></div>
+      </div>
+    </div>
+
+    <!-- Destination -->
+    <section id="destination">
+      <button class="click-btn" id="click-me">CLICK ME!</button>
+    </section>
+
+    <!-- Final Section -->
+    <section id="final">
+      <h2 class="final-question">Θες ακόμα να δεις τη ροζ ταινία;</h2>
+      <div class="btn-group">
+        <button class="final-button yes" id="yes-btn">Yes</button>
+        <button class="final-button no" id="no-btn">No</button>
+      </div>
+      <p id="no-response" class="hidden-text">Okay...</p>
+    </section>
+
+    <!-- Alert Modal -->
+    <div class="overlay" id="alert-overlay">
+      <div class="modal">
+        <h2>Α ρε πονηρούλη!</h2>
+        <p>Σου αρέσουν οι ροζ ταινίες, ε; 😏</p>
+        <button class="modal-btn" id="close-modal">Κλείσιμο</button>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
