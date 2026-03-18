@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Η Ροζ Ταινία Mas | High-End Scrollytelling</title>
+    <title>Η Ροζ Ταινία Mas | Sequence Scrollytelling</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Caveat:wght@700&display=swap" rel="stylesheet" />
@@ -15,35 +15,30 @@
       <span class="logo-text">Antigravity</span>
     </div>
 
-    <!-- 1. Intro Hero (Non-Sticky) -->
+    <!-- 1. Intro Hero -->
     <section id="hero">
       <h1 class="hero-title">Αυτή είναι η ροζ ταινία μας</h1>
     </section>
 
-    <!-- 2. Scrollytelling Sequence (Sticky) -->
+    <!-- 2. Scrollytelling Sequence (Canvas) -->
     <div id="scrolly-container">
-      <div class="sticky-box">
-        <!-- Floating Text Snippets -->
+      <canvas id="sequence-canvas"></canvas>
+      
+      <!-- Overlays for snippets -->
+      <div class="sticky-overlays">
         <span class="snippet left" id="snippet-1">Είσαι έτοιμος;</span>
         <span class="snippet right" id="snippet-2">Συνέχισε...</span>
-        
-        <!-- The Core: Tape Roll -->
-        <div id="tape-core">
-          <img src="/image_89fb44.jpg" alt="Pink Tape Roll" id="roll-img" />
-          <!-- The Strip extending downwards -->
-          <div id="the-strip"></div>
-        </div>
       </div>
     </div>
 
-    <!-- 3. Climax: Destination -->
+    <!-- 3. Climax -->
     <section id="destination">
       <div class="content-wrapper">
         <button class="click-btn" id="click-me">CLICK ME!</button>
       </div>
     </section>
 
-    <!-- 4. Final Footer Section -->
+    <!-- 4. Final -->
     <section id="final">
       <h2 class="final-question">Θες ακόμα να δεις τη ροζ ταινία;</h2>
       <div class="btn-group">
@@ -53,7 +48,6 @@
       <p id="no-response" class="hidden-text">Κρίμα...</p>
     </section>
 
-    <!-- Full-screen Overlay for "Ναι" -->
     <div class="overlay" id="alert-overlay">
       <div class="reveal-content">
         <h2 class="naughty-text">Α ρε πονηρούλη!</h2>
